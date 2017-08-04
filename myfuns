@@ -1,0 +1,51 @@
+var funs = {
+	//显示提示框
+	showmsg:function(msg,time){
+		time = time||500;
+		var $div = $('<div>');
+		$div.html(msg);
+		$div.css({
+			'background':'#474747',
+			'position':'absolute',
+			'fontSize':'14px',
+			'padding':'10px 25px',
+			'left':'50%',
+			'color':'#fff',
+			'transform':'translate(-50%,0)',
+			'textAlign':'center',
+			'fontFamily':'PingFang',
+			'borderRadius':'6px',
+			'bottom':'100px',
+			'display':'none'
+		});
+		
+		$div.fadeIn(500);
+
+		setTimeout(function(){$div.fadeOut(500)},time);
+
+		return $div;
+	},
+  clickcheck:function(cls,id){
+		var isall = '';
+		isall = $(cls+':checked').length == $(cls).length?true:false;
+		$(id)[0].checked = (isall?true:false);
+	},
+	//全选
+	//例子
+	//all('#sall','.shengao input');
+	all:function(id,cls){
+		$(id).click(function(){
+			var ischecked = this.checked;
+			// console.log(ischecked)
+			if(ischecked==true){
+				$(cls).each(function(i,e){
+					this.checked=true;
+				})
+			}else{
+				$(cls).each(function(i,e){
+					this.checked=false;
+				})
+			}
+		})
+	}
+}
