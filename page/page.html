@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../jsk/jquery/jquery-3.2.1.js"></script>
+	<style>
+		ul,li{list-style: none;}
+		.btn{padding:5px 10px;background:#2B34E1;color:#fff;float:left;margin:5px;} 
+		.active{background:#5D62F0;}
+	</style>
+	<script src="../jsk/extend.1.js"></script>
+</head>
+<body>
+	<div id="page">
+		<ul>
+			<li class="btn wh-home">首页</li>
+			<li class="btn wh-prev">上一页</li>
+			<li class="btn wh-pages active">1</li>
+			<li class="btn wh-pages">2</li>
+			<li class="btn wh-pages">3</li>
+			<li class="btn wh-pages">4</li>
+			<li class="btn wh-pages">5</li>
+			<li class="btn wh-next">下一页</li>
+			<li class="btn wh-end">尾页</li>
+		</ul>
+	</div>
+	<script>
+	// console.log($('.pages').get(0))
+		$(function(){
+			var obj = {
+				lis:$('.wh-pages'),
+				prev:$('.wh-prev'),
+				next:$('.wh-next'),
+				home:$('.wh-home'),
+				end:$('.wh-end'),
+				activetext:parseInt($('.active').text()),
+				center:3,
+				active:1,
+				len:7,
+				init:function(o){
+					// 自定义参数
+					if(o){
+						extend(obj,o)
+					}
+					// $('.btn').on('click',function(){alert($(this).html())})
+					this.pageclick();
+					this.prevclick();
+					this.nextclick();
+					this.homeclick();
+					this.endclick();
+				},
+				pageclick:function(){
+					var me = this;
+
+					me.lis.each(function(i,ele){
+						$(ele).on('click',function(){
+							// alert('a'+$(this).html())
+							var text = parseInt($(this).html())
+							console.log(text);
+							me.towho(text);
+						})
+					})
+				},
+				// 点击上一页
+				prevclick:function(){
+					var me = this;
+					me.prev.on('click',function(){
+						// var text = parseInt($('.active').html());
+						if(me.activetext!=1){
+							me.activetext--;
+						}
+						me.towho(me.activetext)
+					})
+				},
+				// 点击下一页
+				nextclick:function(){
+					var me = this;
+					me.next.on('click',function(){
+						// var text = $('.active').html();
+						if(me.activetext!=me.len){
+							me.activetext++;
+						}
+						me.towho(me.activetext)
+					})
+				},
+				// 点击首页
+				homeclick:function(){
+					var me = this;
+					me.home.on('click',function(){
+						me.towho(1);
+					})
+				},
+				// 点击尾页
+				endclick:function(){
+					var me = this;
+					me.end.on('click',function(){
+						me.towho(me.len);
+					})
+				},
+				// 跳转到第几页
+				towho:function(num){
+					var me = this;
+					var len = me.len;
+					me.activetext = num;
+					switch(num){
+						case 1:
+						me.active = 1;
+						me.center = 3;
+						me.pages(1);
+						me.switchactive(me.lis.get(0));
+						break;
+						case 2:
+						me.active = 2;
+						me.center = 3;
+						me.pages(2);
+						me.switchactive(me.lis.get(1));
+						break;
+						case me.len-1:
+						me.active = len-1;
+						me.center = len-2;
+						me.pages(len-1);
+						me.switchactive(me.lis.get(3));
+						break;
+						case me.len:
+						me.active = len;
+						me.center = len-2;
+						me.pages(len);
+						me.switchactive(me.lis.get(4));
+						break;
+						default:
+						me.active = me.center = num;
+						me.pages(num);
+						me.switchactive(me.lis.get(2));
+					}
+				},
+				// 切换页码
+				pages:function(pagenum){
+					var me = this;
+					me.pagerender();
+				},
+				// 渲染页码
+				pagerender:function(){
+					var me = this;
+					me.lis.each(function(i,ele){
+						$(ele).html(me.center-2+i)
+					})
+				},
+				// 切换选中项
+				switchactive:function(active){
+					$(active).addClass('active').siblings().removeClass('active')
+				}
+			}
+			obj.init({len:20})
+		})
+	</script>
+</body>
+</html>
