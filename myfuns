@@ -2,13 +2,14 @@ var funs = {
 	//显示提示框
 	showmsg:function(msg,time){
 		time = time||500;
+		var showtime = 500;
 		var $div = $('<div>');
 		$div.html(msg);
 		$div.css({
 			'background':'#474747',
 			'position':'absolute',
 			'fontSize':'14px',
-			'padding':'10px 25px',
+			'padding':'10px 15px',
 			'left':'50%',
 			'color':'#fff',
 			'transform':'translate(-50%,0)',
@@ -18,14 +19,19 @@ var funs = {
 			'bottom':'100px',
 			'display':'none'
 		});
-		
-		$div.fadeIn(500);
 
-		setTimeout(function(){$div.fadeOut(500)},time);
+		$div.fadeIn(showtime);
 
+		setTimeout(function(){
+			$div.fadeOut(showtime)
+			setTimeout(function(){
+				$div.remove()
+			},showtime)
+		},time);
+		$('body').append($div);
 		return $div;
 	},
-  clickcheck:function(cls,id){
+  	clickcheck:function(cls,id){
 		var isall = '';
 		isall = $(cls+':checked').length == $(cls).length?true:false;
 		$(id)[0].checked = (isall?true:false);
