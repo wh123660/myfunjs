@@ -17,6 +17,7 @@ var funs = {
 		}else{
 			if(iscarnum){
 				console.log('登陆')
+				//发送给后台
 				me.ajaxcarnum(carnum)
 			}else{
 				me.showmsg('您输入的车牌号不正确，请确认车牌号',1000);
