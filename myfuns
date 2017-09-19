@@ -1,4 +1,20 @@
 var funs = {
+	// 获取url里面的参数
+	geturldatas:function(){
+		// var keys=[],vals=[];
+		var objs = {};
+		var url = location.search.slice(1);
+		if(url!=''){
+			var arr = url.split('&');
+			arr.forEach(function(ele,i){
+				objs[ele.split('=')[0]] = ele.split('=')[1];
+			})
+			console.log(objs)
+			return objs
+		}else{
+			return;
+		}
+	},
 	//显示提示框
 	showmsg:function(msg,time){
 		time = time||500;
