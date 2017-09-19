@@ -1,4 +1,30 @@
 var funs = {
+	// 验证用户输入的车牌号
+	tests:function(){
+		var me = this;
+		// var province = $('.wh-input-province').text();
+		var carnum = $('.wh-input').val().toUpperCase();
+		// console.log(province+carnum)
+		// var str = '浙AABDSS';
+		var regexp = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
+		var iscarnum = regexp.test(carnum);
+		// console.log(iscarnum)
+		if(carnum==''){
+			me.showmsg('您输入的车牌号为空',1000);
+			$('.wh-input').focus();
+
+			// console.log('您输入的车牌号为空')
+		}else{
+			if(iscarnum){
+				console.log('登陆')
+				me.ajaxcarnum(carnum)
+			}else{
+				me.showmsg('您输入的车牌号不正确，请确认车牌号',1000);
+				$('.wh-input').focus();
+			// console.log('您输入的车牌号不正确，请确认车牌号')
+			}
+		}
+	},
 	// 获取url里面的参数
 	geturldatas:function(){
 		// var keys=[],vals=[];
