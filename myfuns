@@ -50,7 +50,7 @@ var funs = {
 		$div.html(msg);
 		$div.css({
 			'background':'#474747',
-			'position':'absolute',
+			'position':'fixed',
 			'fontSize':'14px',
 			'padding':'10px 15px',
 			'left':'50%',
