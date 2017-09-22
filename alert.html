@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+	<title>弹出框</title>
+	<link rel="stylesheet" href="/css/base.css">
+	<script src="/jsk/jquery/jquery-3.2.1.js"></script>
+	<style>
+		*{box-sizing: border-box;}
+		.wh-noscroll{
+			overflow: hidden;
+		}
+		.wh-pop{
+			position: fixed;
+			left: 0;top: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,.7);
+		}
+		.wh-panel{
+			background: #fff;
+			/* width:50%; */
+			/* width: 400px; */
+			height: auto;
+			position: absolute;
+			left: 50%;
+			top: 200px;
+			/* margin-left: -200px; */
+
+			border-radius: 10px;
+		}
+		.wh-head{
+			text-align: center;
+			/* line-height: 1; */
+			font-weight: bold;
+			padding: 1em;
+			border-bottom: 1px solid #ddd;
+		}
+		.wh-body{
+			padding:1em 2em;
+			font-size: 14px;
+			line-height: 2;
+			max-height: 9em;
+			overflow-y: auto;
+			text-indent: 20px;
+		}
+		.wh-foot{
+			border-top: 1px solid #ddd;
+			overflow: hidden;
+		}
+		.wh-2{
+			width: 50%;
+			padding: 1em;
+			float: left;
+			text-align: center;
+			cursor: pointer;
+		}
+		.wh-2:first-child{
+			border-right: 1px solid #ddd;
+		}
+		.wh-2:last-child{
+			border-left: 1px solid #ddd;
+		}
+	</style>
+</head>
+<body class="wh-noscroll">
+	<button onclick="o.alerts()">click</button>
+	<!-- <img src="/imgs/" alt=""> -->
+	<!-- <div class="wh-pop" style="line-height: 100%;">
+		<div class="wh-panel">
+			<div class="wh-head">
+				头部信息
+			</div>
+			<div class="wh-body">
+				<p>填写的数据信息lkfj
+				填写的数据信息</p>
+				<p>alksdjflkajsdlkfjvalksdjflakjdsflkkajds;ffjkalds </p>
+				<p>asdklfjalksdjflkajdsf;lajdsf;asd</p>
+				apdsfjalkdsjlk;ajdsf;fajkd'
+				asdflkjasdjflakjsd
+			</div>
+			<div class="wh-foot">
+				<div class="wh-2 wh-enter" onclick="o.clickent()">
+					确定
+				</div>
+				<div class="wh-2 wh-cancel" onclick="o.clickcel()"">
+					取消
+				</div>
+			</div>
+			<div class="wh-foot">
+				<div class="wh-2 wh-cancel" onclick="o.clickcel()">
+					取消
+				</div>
+				<div class="wh-2 wh-save wh-fb wh-col-blue" onclick="o.clicksave()">
+					保存
+				</div>
+			</div>
+			<div class="wh-foot">
+				<div class="wh-enter wh-tc wh-p1 " onclick="o.clickent()">
+					<span class="">确定</span>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+	<br>
+	123
+	<script>
+		var o = {
+			setting:{
+				panelwidth:300,
+				type:'custom',//save,enter,once,custom
+				showFoot:true,
+				hasimg:false,
+				// content:'是否确定？',
+				contents:['是否确定？','Lorem ipsum molestias','<input type="checkbox" id="of" /><label for="of"> 我已看过以上条款</label>'],
+				ismove:false,
+				headcontent:'头部信息',
+				customele:`
+					<input type="checkbox" /> 我已看过以上条款
+				`,
+				callback:function(){
+					alert('callback')
+				}
+			},
+			init:function(obj){
+				var me = this;
+				if(obj){
+					$.extend(me.setting,obj);
+				}
+				me.renderele();
+			},
+			renderele:function(){
+				var me = this;
+				var setting = me.setting;
+
+				var pop = $('<div class="wh-pop">');
+				var panel = $('<div class="wh-panel">');
+				var head = $('<div class="wh-head">');
+				var body = $('<div class="wh-body">');
+				var foot = $('<div class="wh-foot">');
+				head.html(setting.headcontent);
+				var bodyhtml='';
+				setting.contents.forEach(function(ele,i){
+					bodyhtml+='<p>'+ele+'</p>';
+				})
+				body.html(bodyhtml)
+				panel.css({
+					'width':setting.panelwidth+'px',
+					'marginLeft':'-'+(setting.panelwidth/2)+'px'
+				})
+				// 根据foot判断底部显示什么
+				if(me.setting.type == 'enter'){
+					foot.html(`
+						<div class="wh-2 wh-enter" onclick="o.clickent()">
+							确定
+						</div>
+						<div class="wh-2 wh-cancel" onclick="o.clickcel()"">
+							取消
+						</div>
+						`);
+				}else if(me.setting.type == 'save'){
+					foot.html(`
+						<div class="wh-2 wh-cancel" onclick="o.clickcel()">
+							取消
+						</div>
+						<div class="wh-2 wh-save wh-fb wh-col-blue" onclick="o.clicksave()">
+							保存
+						</div>
+						`);
+				}else if(me.setting.type == 'once'){
+					foot.html('<div class="wh-enter wh-tc wh-p1">确定</div>');
+				}else{
+					foot.html(setting.customele).css('padding','1em');
+				}
+				panel.append(head);
+				panel.append(body);
+				panel.append(foot);
+				pop.append(panel);
+				$('body').append(pop);
+			},
+			alerts:function(){
+				this.shows()
+			},
+			clicksave:function(){
+				alert('保存');
+				this.setting.callback();
+				this.closed();
+			},
+			clickent:function(){
+				alert('确定');
+				this.setting.callback();
+				this.closed();
+			},
+			clickcel:function(){
+				$('.wh-pop').hide();
+				$('body').removeClass('wh-noscroll')
+			},
+			closed:function(){
+				$('.wh-pop').hide();
+				$('body').removeClass('wh-noscroll')
+			},
+			shows:function(){
+				$('.wh-pop').show();
+				$('body').addClass('wh-noscroll')
+			}
+		}
+		o.init({
+			type:'enter'
+		});
+	</script>
+</body>
+</html>
