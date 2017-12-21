@@ -96,5 +96,24 @@ var funs = {
 				})
 			}
 		})
+	},
+	getsystem:function(){
+	    var u = navigator.userAgent;
+	    var system,channel;
+	    if(/Alipay/i.test(u)){
+		channel = 'ali';
+	    }else if(/MicroMessenger/i.test(u)){
+		channel = 'weixin';
+	    }else{
+		channel = 'other';
+	    }
+	    if(/iPhone/i.test(u)){
+		system = 'iPhone';
+	    }else if(/Android/i.test(u)){
+		system = 'Android';
+	    }else{
+		system = 'pc';
+	    }
+	    return [system,channel];
 	}
 }
