@@ -1,6 +1,24 @@
 
 	'use strict'
+//     //去空格  /////IE 9才支持str.trim()方法
+//     function trim(text){
+//         // var whitespace = "[\\x20\\t\\r\\n\\f]",
+//             // rtrim = new RegExp( "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$", "g" )
+//         var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g
+//         return text == null ?
+//             "" :
+//             ( text + "" ).replace( rtrim, "" );
+//     }
 var funs = {
+        //去空格  /////IE 9才支持str.trim()方法
+	trim:function(text){
+		// var whitespace = "[\\x20\\t\\r\\n\\f]",
+		    // rtrim = new RegExp( "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$", "g" )
+		var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g
+		return text == null ?
+		    "" :
+		    ( text + "" ).replace( rtrim, "" );
+	    },
 	//输入框中的placeholder的颜色设置
 	/*例子：
 	inputplaceholder('#inputid','label',{'color':'blue'},{'opacity':0.5},{'opacity':1});
