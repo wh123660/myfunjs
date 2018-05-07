@@ -160,6 +160,7 @@ var funs = {
 		}
 		return ""
 	},
+	//随机生成字符串
 	randstr:function(len) {
 		var len = len?len:16;
 	    var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -169,6 +170,11 @@ var funs = {
 	        str += chars[rand];
 	    }
 	    return str;
+	},
+	//随机数字范围内
+	randnum:function(nums){
+		var num = parseInt(Math.random()*nums);
+		return num;
 	}
 
 }
