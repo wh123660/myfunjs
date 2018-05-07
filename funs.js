@@ -159,6 +159,16 @@ var funs = {
 			}
 		}
 		return ""
+	},
+	randstr:function(len) {
+		var len = len?len:16;
+	    var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	    var str = "";
+	    for (var i = 0; i < len; i++) {
+	    	var rand = parseInt(Math.random()*chars.length);
+	        str += chars[rand];
+	    }
+	    return str;
 	}
 
 }
