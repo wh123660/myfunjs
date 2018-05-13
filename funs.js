@@ -1,5 +1,22 @@
 
 	'use strict'
+// form表单限制上传文件的数量
+function fileCountCheck(objForm){
+    if (window.File && window.FileList) {
+	    //这里是上传文件input的name
+	var fileCount = objForm["bc_pic[]"].files.length;
+	if(fileCount > 3){
+	    window.alert('文件数不能超过3个，你选择了' + fileCount + '个');
+	}
+	else {
+	    return true;
+	}
+    }
+    else {
+	window.alert('抱歉，你的浏览器不支持FileAPI，请升级浏览器！');
+    }
+    return false;
+}
 //     //去空格  /////IE 9才支持str.trim()方法
 //     function trim(text){
 //         // var whitespace = "[\\x20\\t\\r\\n\\f]",
