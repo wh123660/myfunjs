@@ -42,6 +42,22 @@ var funs = {
 			return;
 		}
 	},
+	// 从url中获取参数拼接成obj格式，如果没有，返回空{}，这个是被人代码里拉出来的，可以替换上面代码
+	param2Obj(url) {
+	  const search = url.split('?')[1]
+	  if (!search) {
+	    return {}
+	  }
+	  return JSON.parse(
+	    '{"' +
+	      decodeURIComponent(search)
+		.replace(/"/g, '\\"')
+		.replace(/&/g, '","')
+		.replace(/=/g, '":"')
+		.replace(/\+/g, ' ') +
+	      '"}'
+	  )
+	},
 	//显示提示框
 	showmsg:function(msg,time){
 		time = time||500;
