@@ -132,4 +132,23 @@ var funs = {
 	    }
 	    return [system,channel];
 	}
+	async getExcel () {
+	     // 1充值 2提现
+	     let res = await getExcelData(1)
+	     // console.log(" getExcel res: ", res)
+	     let blob = new Blob([res.data], {
+		type: 'application/vnd.ms-excel'
+	     })
+	     let fileName = '充值列表' + Date.parse(new Date()) + '.xlsx'
+	     if (window.navigator.msSaveOrOpenBlob) {
+		navigator.msSaveBlob(blob, fileName)
+	     } else {
+		var link = document.createElement('a')
+		link.href = window.URL.createObjectURL(blob)
+		link.download = fileName
+		link.click()
+		// 释放内存
+		window.URL.revokeObjectURL(link.href)
+	     }
+	},
 }
