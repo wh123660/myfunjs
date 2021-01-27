@@ -30,4 +30,14 @@ const isObject = (val) => val !== null && typeof val === 'object';
 const isPromise = (val) => {
     return isObject(val) && isFunction(val.then) && isFunction(val.catch);
 };
-
+const objectToString = Object.prototype.toString;
+  const toTypeString = (value) => objectToString.call(value);
+  const toRawType = (value) => {
+      // extract "RawType" from strings like "[object RawType]"
+      return toTypeString(value).slice(8, -1);
+  };
+  const isPlainObject = (val) => toTypeString(val) === '[object Object]';
+  const isIntegerKey = (key) => isString(key) &&
+      key !== 'NaN' &&
+      key[0] !== '-' &&
+      '' + parseInt(key, 10) === key;
