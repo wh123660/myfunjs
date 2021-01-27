@@ -11,3 +11,9 @@ const isObject = (val) => val !== null && typeof val === 'object';
 const isPromise = (val) => {
     return isObject(val) && isFunction(val.then) && isFunction(val.catch);
 };
+const remove = (arr, el) => {
+      const i = arr.indexOf(el);
+      if (i > -1) {
+          arr.splice(i, 1);
+      }
+  };
